@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { SwipeRow } from 'react-native-swipe-list-view'
+import { MaterialIcons } from '@expo/vector-icons';
 
 const TodoItem = React.forwardRef(({ item, swipeHandler }, ref) => {
     return (
@@ -11,9 +12,10 @@ const TodoItem = React.forwardRef(({ item, swipeHandler }, ref) => {
             preview={true}
         >
             <View style={styles.rowBack}>
-                <Text style={styles.deleteBtn}>Delete</Text>
+                <MaterialIcons name="delete-forever" size={24} color="red" />
             </View>
             <TouchableOpacity style={styles.rowFront}>
+                <Text style={styles.itemKey}>{item.key}:</Text>
                 <Text style={styles.item}>{item.text}</Text>
             </TouchableOpacity>
         </SwipeRow>
@@ -22,30 +24,26 @@ const TodoItem = React.forwardRef(({ item, swipeHandler }, ref) => {
 
 const styles = StyleSheet.create({
     rowFront: {
+        flexDirection: 'row',
         backgroundColor: '#fff',
         marginBottom: 16,
         borderColor: '#bbb',
         borderWidth: 1,
         borderStyle: 'dashed',
-        borderRadius: 10
+        borderRadius: 10,
+        padding: 16,
+    },
+    itemKey: {
+        color: 'teal'
     },
     item: {
-        padding: 16,
+        paddingLeft: 5
     },
     rowBack: {
         alignItems: 'center',
         flexDirection: 'row-reverse',
         justifyContent: 'space-between',
-        paddingLeft: 15,
-        paddingRight: 15,
-    },
-    deleteBtn: {
-        backgroundColor: '#f00',
-        padding: 10,
-        marginTop: 5,
-        borderRadius: 5,
-        fontSize: 18,
-        opacity: 0.5
+        padding: 15,
     }
 })
 

@@ -11,11 +11,11 @@ export default function Header() {
 
 const styles = StyleSheet.create({
     header: {
-        flex: 1,
-        backgroundColor: 'coral'
+        backgroundColor: 'coral',
     },
     title: {
-        paddingTop: 25,
+        paddingTop: 10,
+        paddingBottom: 10,
         fontSize: 24,
         fontWeight: 'bold',
         textAlign: 'center',

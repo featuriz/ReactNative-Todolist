@@ -11,15 +11,14 @@ export default function Footer() {
 
 const styles = StyleSheet.create({
     footer: {
-        flex: .5,
         backgroundColor: '#CCC',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     footerText: {
         textAlign: 'center',
-        fontSize: 10,
         color: '#000',
-        padding: 5,
-        marginBottom: 10
+        fontSize: 9,
+        paddingTop: 5,
+        paddingBottom: 5
     }
 })

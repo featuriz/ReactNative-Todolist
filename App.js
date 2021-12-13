@@ -65,11 +65,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   content: {
-    flex: 10,
-    padding: 40
+    flex: 1,
+    padding: 40,
+    marginBottom: 1
   },
   list: {
+    flex: 1,
     marginTop: 20,
-    marginBottom: 20,
   },
 });
