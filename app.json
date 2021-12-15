@@ -17,16 +17,21 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.featuriz.todolist",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.featuriz.todolist",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./app/assets/favicon.png"
-    }
+    },
+    "description": "A personal todolist"
   }
 }

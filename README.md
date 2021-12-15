@@ -1,3 +1,3 @@
 # TODO LIST
 
-init
+A personal todolist
