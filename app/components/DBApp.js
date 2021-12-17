@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import AsyncStorage, { useAsyncStorage } from '@react-native-async-storage/async-storage';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 export default function DBApp() {
     const initVal = [
@@ -24,7 +24,7 @@ export default function DBApp() {
             var nv = jsonValue != null ? JSON.parse(jsonValue) : null
             setValue(nv);
         } catch (e) {
-            console.log('Get Error: ' + e)
+            Alert.alert('OOPS!', 'Get Error: ' + e)
             setValue(initVal);
         }
     }
@@ -35,7 +35,7 @@ export default function DBApp() {
             await setItem(jsonValue)
             setValue(newVal);
         } catch (e) {
-            console.log('Get Error: ' + e)
+            Alert.alert('OOPS!', 'Set Error: ' + e)
         }
     }
 
@@ -61,27 +61,3 @@ export default function DBApp() {
         </View>
     );
 }
-
-/*
- const storeData = async (value) => {
-    try {
-      console.log("seta: " + value)
-      const jsonValue = JSON.stringify(value)
-      console.log("set: " + jsonValue)
-      await AsyncStorage.setItem('@fz_Key', jsonValue)
-    } catch (e) {
-      console.log("Error on Set:- " + e);
-    }
-
-    getDBVal()
-  }
-
-  const getData = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem('@fz_Key')
-      return jsonValue != null ? JSON.parse(jsonValue) : null;
-    } catch (e) {
-      console.log("Error on Get:- " + e);
-    }
-  }
-*/

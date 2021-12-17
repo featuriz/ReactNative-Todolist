@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, Keyboard, SafeAreaView, StatusBar, StyleSheet, TouchableWithoutFeedback, View, Text, TouchableOpacity } from 'react-native';
+import { Alert, Keyboard, SafeAreaView, TouchableWithoutFeedback, View, } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
+import { globalStyles } from './app/globalStyles';
 import AddTodo from './app/components/AddTodo';
 import Footer from './app/components/Footer';
 import Header from './app/components/Header';
@@ -26,6 +27,9 @@ export default function App() {
   }
   var deleteTodo = (key) => {
     return todos.filter(todo => todo.key !== key)
+  }
+  var isOldTodo = (text) => {
+    return todos.filter(todo => todo.text == text)
   }
   const getMyObject = async () => {
     try {
@@ -53,30 +57,36 @@ export default function App() {
     }
   }
   const submitHandler = async (text) => {
-    if (text.length > 3) {
-      var newVal = addTodo(text)
-      try {
-        const jsonValue = JSON.stringify(newVal)
-        await setItem(jsonValue)
-        setTodos(newVal);
-      } catch (e) {
-        Alert.alert('OOPS!', 'Error when submitting data! ' + e)
-      }
-      Keyboard.dismiss()
-    } else {
+    if ((text.length < 3) || (text.length == null)) {
       Alert.alert('OOPS!', 'Todos must be over 3 chars long')
     }
+    else {
+      var inDB = isOldTodo(text)
+      if (inDB.length == 0) {
+        var newVal = addTodo(text)
+        try {
+          const jsonValue = JSON.stringify(newVal)
+          await setItem(jsonValue)
+          setTodos(newVal);
+        } catch (e) {
+          Alert.alert('OOPS!', 'Error when submitting data! ' + e)
+        }
+        Keyboard.dismiss()
+      } else {
+        Alert.alert('OOPS!', 'Already Exist!')
+      }
+    }
+
   }
 
   return (
     <TouchableWithoutFeedback onPress={() => {
       Keyboard.dismiss()
     }}>
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={globalStyles.container}>
         <Header />
-        <View style={styles.content}>
-          <AddTodo submitHandler={submitHandler} />
-          <View style={styles.list}>
+        <View style={globalStyles.content}>
+          <View style={globalStyles.list}>
             <SwipeListView
               data={todos}
               renderItem={({ index, item }) => (
@@ -86,27 +96,10 @@ export default function App() {
               rightOpenValue={-75}
             />
           </View>
+          <AddTodo submitHandler={submitHandler} />
         </View>
         <Footer />
       </SafeAreaView>
     </TouchableWithoutFeedback>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: StatusBar.currentHeight,
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'flex-start',
-  },
-  content: {
-    flex: 1,
-    padding: 40,
-    marginBottom: 1
-  },
-  list: {
-    flex: 1,
-    marginTop: 20,
-  },
-});
