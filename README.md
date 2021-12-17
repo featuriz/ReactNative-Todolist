@@ -4,10 +4,11 @@ A personal todolist mobile application using [react-native](https://reactnative.
 
 ## Configuration
 
-| Dependency | Version |
-| expo | ~43.0.2 |
-| react | 17.0.1 |
-| react-native | 0.64.3 |
+| Dependency                                | Version  |
+| ----------------------------------------- | -------- |
+| expo                                      | ~43.0.2  |
+| react                                     | 17.0.1   |
+| react-native                              | 0.64.3   |
 | @react-native-async-storage/async-storage | ^1.15.14 |
 
 ## Intro
@@ -29,7 +30,8 @@ Based on system theme, app color changes. Only two modes are there,
 
 - light
 - dark
-  If it's not light then app switches to dark mode.
+
+If it's not light then app switches to dark mode.
 
 ## Swipe
 
