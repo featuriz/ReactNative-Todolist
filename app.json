@@ -33,6 +33,7 @@
     "web": {
       "favicon": "./app/assets/favicon.png"
     },
-    "description": "A personal todolist"
+    "description": "A personal todolist",
+    "githubUrl": "https://github.com/featuriz/ReactNative-Todolist"
   }
 }
